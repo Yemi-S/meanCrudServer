@@ -14,7 +14,6 @@ exports.crearProducto = async (req, res) =>{
         console.log(req.body);
         res.status(500).send('Hubo un error');
     }
-    
 }
 
 //Listar productos
@@ -26,7 +25,6 @@ exports.obtenerProductos = async (req, res) =>{
         console.log(req.body);
         res.status(500).send('Hubo un error');
     }
-    
 }
 
 // Actualizar productos
@@ -51,5 +49,20 @@ exports.actualizarProducto = async (req, res) =>{
         console.log(req.body);
         res.status(500).send('Hubo un error');
     }
-    
+}
+
+//Obtener un producto por id
+exports.obtenerProducto = async (req, res) =>{
+    try{
+        let producto = await Producto.findById(req.params.id);
+
+        if (!producto) {
+            res.status(404).json({msg: 'No existe el producto'});
+        }
+
+        res.json(producto);
+    }catch(error){
+        console.log(req.body);
+        res.status(500).send('Hubo un error');
+    }
 }
