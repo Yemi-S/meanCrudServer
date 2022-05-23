@@ -16,3 +16,14 @@ exports.crearProducto = async (req, res) =>{
     }
     
 }
+
+exports.obtenerProductos = async (req, res) =>{
+    try{
+        const productos = await Producto.find();
+        res.json(productos);
+    }catch(error){
+        console.log(req.body);
+        res.status(500).send('Hubo un error');
+    }
+    
+}
